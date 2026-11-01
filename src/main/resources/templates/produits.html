@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des produits</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Liste des produits</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Code Barre</th>
+                <th>Date d'expiration</th>
+                <th>Catégorie</th>
+                <th>Fournisseur</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="produit : ${produits}">
+                <td th:text="${produit.id}"></td>
+                <td th:text="${produit.nom}"></td>
+                <td th:text="${produit.description}"></td>
+                <td th:text="${produit.prix}"></td>
+                <td th:text="${produit.codeBarre}"></td>
+                <td th:text="${produit.dateExpiration}"></td>
+                <td th:text="${produit.categorie != null ? produit.categorie.nom : 'N/A'}"></td>
+                <td th:text="${produit.fournisseur != null ? produit.fournisseur.nom : 'N/A'}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

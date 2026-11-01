@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Produit {
@@ -18,18 +19,22 @@ public class Produit {
     private String codeBarre;
     private LocalDate dateExpiration;
 
+    @JsonIgnoreProperties("produits")  // pour evite la boucle infinie 
     @ManyToOne
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
 
+    @JsonIgnoreProperties("produits")
     @ManyToOne
     @JoinColumn(name = "fournisseur_id")
     private Fournisseur fournisseur;
 
+    @JsonIgnoreProperties("produits")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "detail_id", referencedColumnName = "id")
     private DetailProduit detailProduit;
 
+    @JsonIgnoreProperties("produits")
     @ManyToMany
     @JoinTable(
         name = "produit_tag",

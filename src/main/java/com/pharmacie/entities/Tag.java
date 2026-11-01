@@ -13,6 +13,7 @@ public class Tag {
 
     private String libelle;
 
+    // produit qui controle la relation
     @ManyToMany(mappedBy = "tags")
     @JsonIgnore
     private List<Produit> produits;

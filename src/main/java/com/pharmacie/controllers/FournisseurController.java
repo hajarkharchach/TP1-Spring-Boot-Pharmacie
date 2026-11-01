@@ -19,7 +19,7 @@ public class FournisseurController {
     public List<Fournisseur> getAll() {
         return fournisseurRepository.findAll();
     }
-
+ 
     @GetMapping("/{id}")
     public ResponseEntity<Fournisseur> getById(@PathVariable Long id) {
         return fournisseurRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
@@ -30,7 +30,6 @@ public class FournisseurController {
         return fournisseurRepository.save(fournisseur);
     }
 
-    // Zid had l'khatwa dyal PUT
     @PutMapping("/{id}")
     public ResponseEntity<Fournisseur> update(@PathVariable Long id, @RequestBody Fournisseur fournisseurDetails) {
         return fournisseurRepository.findById(id)
@@ -41,5 +40,15 @@ public class FournisseurController {
                     return ResponseEntity.ok(fournisseurRepository.save(fournisseur));
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduit(@PathVariable Long id) {
+        if ( fournisseurRepository.existsById(id)) {
+            fournisseurRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

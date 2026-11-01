@@ -15,6 +15,7 @@ public class Fournisseur {
     private String contact;
     private String adresse;
 
+    // produit controle la relation
     @OneToMany(mappedBy = "fournisseur", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Produit> produits;
