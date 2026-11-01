@@ -5,7 +5,11 @@
 ".idea/" 
 "*.iml" 
 ".vscode/" 
+<<<<<<< HEAD
 ".settings/" 
 ".classpath" 
 ".project" 
 ".factorypath" 
+=======
+"target/" 
+>>>>>>> feature/thymeleaf-mvc

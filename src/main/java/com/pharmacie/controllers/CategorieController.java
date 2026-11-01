@@ -30,7 +30,6 @@ public class CategorieController {
         return categorieRepository.save(categorie);
     }
 
-    // Hna zedna l'PUT
     @PutMapping("/{id}")
     public ResponseEntity<Categorie> update(@PathVariable Long id, @RequestBody Categorie categorieDetails) {
         return categorieRepository.findById(id)
@@ -40,5 +39,15 @@ public class CategorieController {
                     return ResponseEntity.ok(categorieRepository.save(categorie));
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCategorie(@PathVariable Long id) {
+        if (categorieRepository.existsById(id)) {
+        	categorieRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -14,7 +14,10 @@ public class Categorie {
     private String nom;
     private String description;
 
+    // une categorie a plusieurs produits 
+    // produit controle la relation et contient cle etrangere 
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
+    // pour eviter la boucle infinie
     @JsonIgnore
     private List<Produit> produits;
 
